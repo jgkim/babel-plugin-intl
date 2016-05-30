@@ -31,7 +31,7 @@ export default function () {
     }
 
     throw path.buildCodeFrameError(
-      '[intl] Messages must be statically evaluate-able for extraction.'
+      '[intl] Messages must be statically evaluate-able for extraction'
     );
   }
 
@@ -42,7 +42,7 @@ export default function () {
     }
 
     throw path.buildCodeFrameError(
-      '[intl] Messages must be statically evaluate-able for extraction.'
+      '[intl] Messages must be statically evaluate-able for extraction'
     );
   }
 
@@ -79,7 +79,7 @@ export default function () {
 
     if (!(id && defaultMessage)) {
       throw path.buildCodeFrameError(
-        '[intl] Message Descriptors require an `id` and `defaultMessage`.'
+        '[intl] Message Descriptors require an `id` and `defaultMessage`'
       );
     }
 
@@ -92,14 +92,14 @@ export default function () {
       ) {
         throw path.buildCodeFrameError(
           `[intl] Duplicate message id: "${id}", ` +
-          'but the `description` and/or `defaultMessage` are different.'
+          'but the `description` and/or `defaultMessage` are different'
         );
       }
     }
 
     if (opts.enforceDescriptions && !description) {
       throw path.buildCodeFrameError(
-        '[intl] Message must have a `description`.'
+        '[intl] Message must have a `description`'
       );
     }
 
@@ -156,19 +156,15 @@ export default function () {
         const moduleSourceName = getModuleSourceName(state.opts);
         const callee = path.get('callee');
 
-        function assertObjectExpression(node) {
-          if (!(node && node.isObjectExpression())) {
+        if (referencesImport(callee, moduleSourceName, FUNCTION_NAMES)) {
+          let messageObj = path.get('arguments')[0];
+
+          if (!(messageObj && messageObj.isObjectExpression())) {
             throw path.buildCodeFrameError(
               `[intl] \`${callee.node.name}()\` must be ` +
-              'called with an object expression with values ' +
-              'that are Intl Message Descriptors, also ' +
-              'defined as object expressions.'
+              'called with an object expression'
             );
           }
-        }
-
-        function processMessageObject(messageObj) {
-          assertObjectExpression(messageObj);
 
           let properties = messageObj.get('properties');
 
@@ -181,21 +177,11 @@ export default function () {
 
           if (!descriptor.defaultMessage) {
             throw path.buildCodeFrameError(
-              '[intl] Message is missing a `defaultMessage`.'
+              '[intl] Message is missing a `defaultMessage`'
             );
           }
 
           storeMessage(descriptor, path, state);
-        }
-
-        if (referencesImport(callee, moduleSourceName, FUNCTION_NAMES)) {
-          let messagesObj = path.get('arguments')[0];
-
-          assertObjectExpression(messagesObj);
-
-          messagesObj.get('properties')
-          .map((prop) => prop.get('value'))
-          .forEach(processMessageObject);
         }
       },
     },
