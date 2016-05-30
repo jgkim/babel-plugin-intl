@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-intl",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Extracts string messages for translation from modules that use intl.",
   "repository": {
     "type": "git",

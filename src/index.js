@@ -147,7 +147,7 @@ export default function () {
             let messagesFile = JSON.stringify(descriptors, null, 2);
 
             mkdirpSync(p.dirname(messagesFilename));
-            writeFileSync(messagesFilename, messagesFile);
+            writeFileSync(messagesFilename, messagesFile + '\n');
           }
         },
       },
