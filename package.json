@@ -1,26 +1,27 @@
 {
-  "name": "babel-plugin-react-intl",
-  "version": "2.1.3",
-  "description": "Extracts string messages for translation from modules that use React Intl.",
+  "name": "babel-plugin-intl",
+  "version": "0.0.1",
+  "description": "Extracts string messages for translation from modules that use intl.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yahoo/babel-plugin-react-intl.git"
+    "url": "git+https://github.com/jgkim/babel-plugin-intl.git"
   },
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
   "author": "Eric Ferraiuolo <edf@ericf.me>",
+  "contributor": "James G. Kim <jgkim@jayg.org> (http://jayg.org/)",
   "dependencies": {
-    "babel-runtime": "^6.2.0",
+    "babel-runtime": "^6.9.2",
     "intl-messageformat-parser": "^1.2.0",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.1.18",
-    "babel-plugin-transform-object-rest-spread": "^6.1.18",
-    "babel-plugin-transform-runtime": "^6.1.18",
-    "babel-preset-es2015": "^6.1.18",
-    "eslint": "^2.9.0",
-    "rimraf": "^2.4.3"
+    "babel-cli": "^6.9.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "eslint": "^2.11.0",
+    "rimraf": "^2.5.2"
   },
   "scripts": {
     "lint": "eslint src/",
@@ -31,10 +32,10 @@
   },
   "keywords": [
     "babel-plugin",
-    "react-intl"
+    "intl"
   ],
   "bugs": {
-    "url": "https://github.com/yahoo/babel-plugin-react-intl/issues"
+    "url": "https://github.com/jgkim/babel-plugin-intl/issues"
   },
-  "homepage": "https://github.com/yahoo/babel-plugin-react-intl#readme"
+  "homepage": "https://github.com/jgkim/babel-plugin-intl#readme"
 }
